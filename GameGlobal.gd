@@ -1,6 +1,6 @@
 extends Node
 var canshoot=true
-enum Gamestates{idle,ball_kept,ball_shoot,ball_shooting,resetting}
+enum Gamestates{idle,ball_kept,ball_shoot,ball_shooting,resetting,ball_fail}
 var gamestate=Gamestates.idle
 var current_ball:RigidBody2D=null
 var intialballpos:Vector2=Vector2(0,0)

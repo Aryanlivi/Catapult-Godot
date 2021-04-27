@@ -23,6 +23,11 @@ config/icon="res://icon.png"
 
 GameGlobal="*res://GameGlobal.gd"
 
+[layer_names]
+
+2d_physics/layer_1="ball_related"
+2d_physics/layer_2="ground"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

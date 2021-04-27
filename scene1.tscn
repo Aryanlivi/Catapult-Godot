@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Obsjoint.gd" type="Script" id=1]
 [ext_resource path="res://CrowbarWeight.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Sprites/Catapult/rod.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Catapult/weight.png" type="Texture" id=15]
 [ext_resource path="res://scene1.gd" type="Script" id=16]
+[ext_resource path="res://CrowbarBase.gd" type="Script" id=17]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -33,7 +34,7 @@ extents = Vector2( 1.875, 4.11652 )
 [sub_resource type="CubeMesh" id=7]
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 2.1073, 7.96823 )
+extents = Vector2( 1.974, 8.38281 )
 
 [sub_resource type="CubeMesh" id=9]
 
@@ -52,9 +53,9 @@ extents = Vector2( 4.88456, 1.36743 )
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 1.00489, 3.97726 )
 
-[sub_resource type="CubeMesh" id=18]
+[sub_resource type="CubeMesh" id=16]
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 35.2078, 628.328 )
 
 [node name="World" type="Node2D"]
@@ -90,10 +91,12 @@ shape = SubResource( 2 )
 [node name="CrowbarBase" type="RigidBody2D" parent="Catapult"]
 position = Vector2( 170, 470 )
 rotation = -0.785398
+contacts_reported = 1
+contact_monitor = true
 sleeping = true
+script = ExtResource( 17 )
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Catapult/CrowbarBase"]
-visible = false
 scale = Vector2( 120, 2 )
 mesh = SubResource( 3 )
 
@@ -123,8 +126,11 @@ texture = ExtResource( 13 )
 
 [node name="CrowbarHeadA" type="RigidBody2D" parent="Catapult"]
 visible = false
-position = Vector2( 80.2183, 545.181 )
+position = Vector2( 79.7572, 551.076 )
 rotation = -0.785398
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Catapult/CrowbarHeadA"]
 scale = Vector2( 1.9416, 8.34889 )
@@ -135,18 +141,21 @@ scale = Vector2( 1, 2 )
 shape = SubResource( 6 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Catapult/CrowbarHeadA"]
-position = Vector2( -0.198486, 9.74405 )
+position = Vector2( -0.0408015, 6.53815 )
 node_a = NodePath("../../CrowbarBase")
 node_b = NodePath("..")
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="Catapult/CrowbarHeadA"]
-position = Vector2( 0.527283, 5.22891 )
+position = Vector2( -0.0384824, 2.62097 )
 node_a = NodePath("../../CrowbarBase")
 node_b = NodePath("..")
 
 [node name="CrowbarHeadB" type="RigidBody2D" parent="Catapult"]
 visible = false
-position = Vector2( 100.167, 525.335 )
+position = Vector2( 101.356, 529.572 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Catapult/CrowbarHeadB"]
 rotation = -0.785398
@@ -154,17 +163,18 @@ scale = Vector2( 1.942, 8.349 )
 mesh = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Catapult/CrowbarHeadB"]
+position = Vector2( 3.05176e-05, -0.0743408 )
 rotation = -0.785398
 shape = SubResource( 8 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Catapult/CrowbarHeadB"]
-position = Vector2( 4.83514, 5.46582 )
+position = Vector2( 2.49921, 1.91638 )
 rotation = -0.785398
 node_a = NodePath("../../CrowbarBase")
 node_b = NodePath("..")
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="Catapult/CrowbarHeadB"]
-position = Vector2( 3.15337, 2.73291 )
+position = Vector2( 5.16019, 4.21942 )
 rotation = -0.785398
 node_a = NodePath("../../CrowbarBase")
 node_b = NodePath("..")
@@ -234,6 +244,8 @@ texture = ExtResource( 15 )
 visible = false
 position = Vector2( 504, 584 )
 scale = Vector2( 3.45551, 0.804571 )
+collision_layer = 3
+collision_mask = 3
 __meta__ = {
 "_edit_group_": true
 }
@@ -260,11 +272,11 @@ __meta__ = {
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
 scale = Vector2( 30, 1000 )
-mesh = SubResource( 18 )
+mesh = SubResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 scale = Vector2( 0.788826, -1.59826 )
-shape = SubResource( 19 )
+shape = SubResource( 17 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
